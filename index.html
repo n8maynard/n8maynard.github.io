@@ -37,6 +37,7 @@
           analytics.SNIPPET_VERSION = "4.1.0";
           analytics.load("lfUu40thQk35qind0aMyfdBusKrvPXdT");
           analytics.page();
+          analytics.screen();
         }
     }();
   </script>
@@ -82,6 +83,14 @@
       analytics.track('destination submitted', user, function () {
         window.location.href = "";
       });
+      analytics.group("0e8c78ea9d97a7b8185e8632", {
+        name: "Travelers",
+        industry: "Technology",
+        employees: 329,
+        plan: "enterprise",
+        "total billed": 830
+      });
+      analytics.alias("507f191e81");
     }
   </script>
 
