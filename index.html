@@ -64,6 +64,9 @@
   <button onclick="wrongEventSchema(event)">
     break track schema
   </button>
+  <button onclick="unplannedEvent(event)">
+    break track schema
+  </button>
 
   <script type="text/javascript">
     function identify(e) {
@@ -96,7 +99,20 @@
       // analytics.alias("507f191e81");
     }
     function wrongEventSchema(e) {
-
+      analytics.track('destination submitted', {
+        destinationLocation: 'wrong schema',
+        details: 'fail    ',
+        email: 'fail@segment.com',
+        name: 'fail'
+      });
+    }
+    function unplannedEvent(e) {
+      analytics.track('unplanned event', {
+        destination: 'group call',
+        details: 'fail    ',
+        email: 'fail@segment.com',
+        name: 'fail'
+      });
     }
   </script>
 
