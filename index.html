@@ -85,7 +85,7 @@
         destination: destination,
         details: details
       };
-      analytics.identify('4321', {
+      analytics.identify(Math.floor(Math.random() * Math.floor(1000)), {
         email: email,
         name: fullname
       });
