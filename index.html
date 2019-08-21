@@ -61,11 +61,14 @@
     <input name="submit" type="submit" value="submit" />
   </form>
   <br><br>
-  <button onclick="wrongEventSchema(event)">
-    Break Track Schema
-  </button>
   <button onclick="unplannedEvent(event)">
     Unplanned Event
+  </button>
+  <button onclick="omitUnplannedProps(event)">
+    Omit Unplanned Properties
+  </button>
+  <button onclick="schemaViolation(event)">
+    JSON Schema Violation
   </button>
 
   <script type="text/javascript">
@@ -98,7 +101,17 @@
       });
       // analytics.alias("507f191e81");
     }
-    function wrongEventSchema(e) {
+
+    // event forwarding
+    function unplannedEvent(e) {
+      analytics.track('unplanned event', {
+        destination: 'group call',
+        details: 'fail    ',
+        email: 'fail@segment.com',
+        name: 'fail'
+      });
+    }
+    function omitUnplannedProps(e) {
       analytics.track('destination submitted', {
         destinationLocation: 'wrong schema',
         details: 'fail    ',
@@ -106,11 +119,11 @@
         name: 'fail'
       });
     }
-    function unplannedEvent(e) {
-      analytics.track('unplanned event', {
-        destination: 'group call',
+    function schemaViolation(e) {
+      analytics.track('destination submitted', {
+        destinationLocation: 1234,
         details: 'fail    ',
-        email: 'fail@segment.com',
+        email: 555,
         name: 'fail'
       });
     }
