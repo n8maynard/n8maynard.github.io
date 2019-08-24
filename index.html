@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Home Questionnaire<span id="selection-marker-1" class="redactor-selection-marker"></span></title>
+  <title>Travel Questionnaire</title>
   <script>
     ! function () {
       var analytics = window.analytics = window.analytics || [];
@@ -40,37 +40,73 @@
         }
     }();
   </script>
+  <style>
+    html {height:100%;}
+    .container {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      background-color: black;
+    }
+    .contact_form   {
+      flex: 1;
+      color: white;
+      background-color: #99cfad;
+      padding: 20px;
+      color: black;
+    }
+    .button_bank    {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background-color: #50b485;
+      color: white;
+      padding: 20px;
+    }
+    button {
+      height: 40px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+    }
+  </style>
 </head>
 
 <body>
+
+  <div class="container">
+    <div class="contact_form">
+        <form name="travel" onsubmit="identify(event)">
+            <div>What is your favorite travel destination?</div>
+            <input name="destination" required="" size="81" type="text" />
+            <br><br>
+            <div>Any recommendations (cool things to do, places to visit or restaurants to eat)?</div>
+            <textarea cols="81" name="details" required="" rows="10"></textarea>
+            <br><br>
+            Name: <input name="fullname" required="" size="75" type="text" />
+            <br><br>
+            Email: <input name="email" required="" size="75" type="email" />
+            <br><br>
+            <input name="submit" type="submit" value="submit" />
+        </form>
+    </div>
+    <div class="button_bank">
+      <button onclick="unplannedEvent(event)">
+        Unplanned Event
+      </button>
+      <button onclick="omitUnplannedProps(event)">
+        Omit Unplanned Properties
+      </button>
+      <button onclick="schemaViolation(event)">
+        JSON Schema Violation
+      </button>
+    </div>
+  </div>
+
   <h1>What is your favorite place to travel?</h1>
   <p>I am building a directory of the sweetest travel destinations.</p>
-  <form name="travel" onsubmit="identify(event)">
-    What is your favorite travel destination?
-    <input name="destination" required="" size="81" type="text" />
-    <br><br><br>
-    Any recommendations (cool things to do, places to visit or restaurants to eat)?
-    <br><br>
-    <textarea cols="81" name="details" required="" rows="10">
-    </textarea>
-    <br><br>
-    Name: <input name="fullname" required="" size="75" type="text" />
-    <br><br>
-    Email: <input name="email" required="" size="75" type="email" />
-    <br><br>
-    <input name="submit" type="submit" value="submit" />
-  </form>
-  <br><br>
-  <button onclick="unplannedEvent(event)">
-    Unplanned Event
-  </button>
-  <button onclick="omitUnplannedProps(event)">
-    Omit Unplanned Properties
-  </button>
-  <button onclick="schemaViolation(event)">
-    JSON Schema Violation
-  </button>
-
   <script type="text/javascript">
     function identify(e) {
       e.preventDefault();
