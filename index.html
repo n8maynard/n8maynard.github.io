@@ -78,7 +78,7 @@
 
   <div class="container">
     <div class="contact_form">
-        <form name="travel" onsubmit="identify(event)">
+        <form name="travel" onsubmit="submitForm(event)">
             <div>What is your favorite travel destination?</div>
             <input name="destination" required="" size="81" type="text" />
             <br><br>
@@ -88,6 +88,8 @@
             Name: <input name="fullname" required="" size="75" type="text" />
             <br><br>
             Email: <input name="email" required="" size="75" type="email" />
+            <br><br>
+            Cost: <input name="cost" required="" size="75" type="number" />
             <br><br>
             <input name="submit" type="submit" value="submit" />
         </form>
@@ -108,24 +110,29 @@
   <h1>What is your favorite place to travel?</h1>
   <p>I am building a directory of the sweetest travel destinations.</p>
   <script type="text/javascript">
-    function identify(e) {
+    function submitForm(e) {
       e.preventDefault();
       var form = e.target;
       var email = form["email"].value;
       var fullname = form["fullname"].value;
       var destination = form["destination"].value;
       var details = form["details"].value;
+      var cost = form["cost"].value;
       var user = {
         email: email,
         name: fullname,
         destination: destination,
-        details: details
+        details: details,
+        cost: cost
       };
       analytics.identify(email, {
         email: email,
         name: fullname
       });
       analytics.track('destination submitted', user, function () {
+        window.location.href = "";
+      });
+      analytics.track('item purchased', {cost:cost}, function () {
         window.location.href = "";
       });
       analytics.group("0e8c78ea9d97a7b8185e8632", {
