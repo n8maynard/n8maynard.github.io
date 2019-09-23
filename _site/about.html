@@ -55,6 +55,7 @@
         <button onclick="schemaViolation(event)">
             JSON Schema Violation
         </button>
+        <button onclick="identify(event)">identify</button>
     </div>
 
     <script type="text/javascript">
@@ -66,6 +67,10 @@
                 email: 'fail@segment.com',
                 name: 'fail'
             });
+        }
+
+        function identify(e) {
+            analytics.identify();
         }
 
         function omitUnplannedProps(e) {
