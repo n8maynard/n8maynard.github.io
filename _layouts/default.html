@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{{page.title}}</title>
+  <script>
+    ! function () {
+      var analytics = window.analytics = window.analytics || [];
+      if (!analytics.initialize)
+        if (analytics.invoked) window.console && console.error && console.error("Segment snippet included twice.");
+        else {
+          analytics.invoked = !0;
+          analytics.methods = ["trackSubmit", "trackClick", "trackLink", "trackForm", "pageview", "identify", "reset",
+            "group", "track", "ready", "alias", "debug", "page", "once", "off", "on"
+          ];
+          analytics.factory = function (t) {
+            return function () {
+              var e = Array.prototype.slice.call(arguments);
+              e.unshift(t);
+              analytics.push(e);
+              return analytics
+            }
+          };
+          for (var t = 0; t < analytics.methods.length; t++) {
+            var e = analytics.methods[t];
+            analytics[e] = analytics.factory(e)
+          }
+          analytics.load = function (t, e) {
+            var n = document.createElement("script");
+            n.type = "text/javascript";
+            n.async = !0;
+            n.src = "https://cdn.segment.com/analytics.js/v1/" + t + "/analytics.min.js";
+            var a = document.getElementsByTagName("script")[0];
+            a.parentNode.insertBefore(n, a);
+            analytics._loadOptions = e
+          };
+          analytics.SNIPPET_VERSION = "4.1.0";
+          analytics.load("VL6MXacTTrKkdIOVMGmwpsMhlJPXPhAf");
+          analytics.page();
+        }
+    }();
+  </script>
+  <style>
+    html {
+      height: 100%;
+    }
+
+    .container {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      background-color: black;
+    }
+
+    .contact_form {
+      flex: 1;
+      color: white;
+      background-color: #99cfad;
+      padding: 20px;
+      color: black;
+    }
+
+    .button_bank {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background-color: #50b485;
+      color: white;
+      padding: 20px;
+    }
+
+    button {
+      height: 40px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <ul>
+    {% assign mypages = site.pages | sort: "order" %}
+    {% for page in mypages %}
+    <li><a href="{{ page.url | absolute_url }}">{{ page.title }}</a></li>
+    {% endfor %}
+  </ul>
+  <div class="container">
+    <div class="contact_form">
+      <h1>What is your favorite place to travel?</h1>
+      <p>I am building a directory of the sweetest travel destinations.</p>
+      <form name="travel" onsubmit="submitForm(event)">
+        <div>What is your favorite travel destination?</div>
+        <input name="destination" required="" size="81" type="text" />
+        <br><br>
+        <div>Any recommendations (cool things to do, places to visit or restaurants to eat)?</div>
+        <textarea cols="81" name="details" required="" rows="10"></textarea>
+        <br><br>
+        Name: <input name="fullname" required="" size="75" type="text" />
+        <br><br>
+        Email: <input name="email" required="" size="75" type="email" />
+        <br><br>
+        Cost: <input name="cost" required="" size="75" type="number" />
+        <br><br>
+        <input name="submit" type="submit" value="submit" />
+      </form>
+    </div>
+    <div class="button_bank">
+      <button onclick="unplannedEvent(event)">
+        Unplanned Event
+      </button>
+      <button onclick="omitUnplannedProps(event)">
+        Omit Unplanned Properties
+      </button>
+      <button onclick="schemaViolation(event)">
+        JSON Schema Violation
+      </button>
+      <a href="about/">about</a>
+    </div>
+  </div>
+
+
+
+  <script type="text/javascript">
+    function submitForm(e) {
+      e.preventDefault();
+      var form = e.target;
+      var email = form["email"].value;
+      var fullname = form["fullname"].value;
+      var destination = form["destination"].value;
+      var details = form["details"].value;
+      var cost = form["cost"].value;
+      var user = {
+        email: email,
+        name: fullname,
+        destination: destination,
+        details: details,
+        cost: cost
+      };
+      analytics.identify(email, {
+        email: email,
+        name: fullname
+      });
+      analytics.track('destination submitted', user, function () {
+        window.location.href = "";
+      });
+      analytics.track('item purchased', {
+        cost: cost
+      }, function () {
+        window.location.href = "";
+      });
+      analytics.group("0e8c78ea9d97a7b8185e8632", {
+        name: "Travelers",
+        industry: "Technology",
+        employees: 329,
+        plan: "enterprise",
+        totalBilled: 830
+      });
+      // analytics.alias("507f191e81");
+    }
+
+    // event forwarding
+    function unplannedEvent(e) {
+      analytics.track('unplanned event', {
+        destination: 'group call',
+        details: 'fail    ',
+        email: 'fail@segment.com',
+        name: 'fail'
+      });
+    }
+
+    function omitUnplannedProps(e) {
+      analytics.track('destination submitted', {
+        destinationLocation: 'wrong schema',
+        details: 'fail    ',
+        email: 'fail@segment.com',
+        name: 'fail'
+      });
+    }
+
+    function schemaViolation(e) {
+      analytics.track('destination submitted', {
+        destinationLocation: 1234,
+        details: 'fail    ',
+        email: 555,
+        name: 'fail'
+      });
+    }
+  </script>
+
+</body>
+
+</html>
