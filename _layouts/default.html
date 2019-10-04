@@ -37,7 +37,6 @@
           analytics.SNIPPET_VERSION = "4.1.0";
           analytics.load("VL6MXacTTrKkdIOVMGmwpsMhlJPXPhAf");
           analytics.page();
-          analytics.identify();
         }
     }();
   </script>
@@ -140,25 +139,26 @@
         details: details,
         cost: cost
       };
-      analytics.identify(email, {
-        email: email,
-        name: fullname
-      });
-      analytics.track('destination submitted', user, function () {
-        window.location.href = "";
-      });
-      analytics.track('item purchased', {
-        cost: cost
-      }, function () {
-        window.location.href = "";
-      });
-      analytics.group("0e8c78ea9d97a7b8185e8632", {
-        name: "Travelers",
-        industry: "Technology",
-        employees: 329,
-        plan: "enterprise",
-        totalBilled: 830
-      });
+
+      // analytics.identify(email, {
+      //   email: email,
+      //   name: fullname
+      // });
+      // analytics.track('destination submitted', user, function () {
+      //   window.location.href = "";
+      // });
+      // analytics.track('item purchased', {
+      //   cost: cost
+      // }, function () {
+      //   window.location.href = "";
+      // });
+      // analytics.group("0e8c78ea9d97a7b8185e8632", {
+      //   name: "Travelers",
+      //   industry: "Technology",
+      //   employees: 329,
+      //   plan: "enterprise",
+      //   totalBilled: 830
+      // });
       // analytics.alias("507f191e81");
     }
 
