@@ -121,11 +121,9 @@
         destination: destination,
         details: details
       };
-      analytics.identify('1234', {
+      analytics.identify({
         email: email,
-        name: fullname,
-        firstName: 'ted',
-        lastName: 'cruz'
+        name: fullname
       });
       analytics.track('destination submitted', user, function () {
         window.location.href = "";
