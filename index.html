@@ -85,7 +85,9 @@
             <div>Any recommendations (cool things to do, places to visit or restaurants to eat)?</div>
             <textarea cols="81" name="details" required="" rows="10"></textarea>
             <br><br>
-            Name: <input name="fullname" required="" size="75" type="text" />
+            Name: <input name="first_name" required="" size="75" type="text" />
+            <br><br>
+            Name: <input name="last_name" required="" size="75" type="text" />
             <br><br>
             Email: <input name="email" required="" size="75" type="email" />
             <br><br>
@@ -112,29 +114,32 @@
       e.preventDefault();
       var form = e.target;
       var email = form["email"].value;
-      var fullname = form["fullname"].value;
+      var first_name = form["first_name"].value;
+      var last_name = form["last_name"].value;
       var destination = form["destination"].value;
       var details = form["details"].value;
       var user = {
-        // email: email,
-        name: fullname,
+        email: email,
+        first_name: first_name,
+        last_name: last_name,
         destination: destination,
         details: details
       };
       analytics.identify({
-        // email: email,
-        name: fullname
+        email: email,
+        first_name: first_name,
+        last_name: last_name
       });
       analytics.track('destination submitted', user, function () {
         window.location.href = "";
       });
-      analytics.group("0e8c78ea9d97a7b8185e8632", {
-        name: "Travelers",
-        industry: "Technology",
-        employees: 329,
-        plan: "enterprise",
-        totalBilled: 830
-      });
+      // analytics.group("0e8c78ea9d97a7b8185e8632", {
+      //   name: "Travelers",
+      //   industry: "Technology",
+      //   employees: 329,
+      //   plan: "enterprise",
+      //   totalBilled: 830
+      // });
       // analytics.alias("507f191e81");
     }
 
