@@ -36,6 +36,9 @@
           };
           analytics.SNIPPET_VERSION = "4.1.0";
           analytics.load("XQGuEhx7chyHYkIguVm89695BaukWQb2");
+          if (window.localStorage.ajs_user_id.match('^[0-9]*$')) {
+            delete window.localStorage.ajs_user_id;
+          }
           analytics.page();
         }
     }();
