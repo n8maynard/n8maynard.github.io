@@ -44,6 +44,8 @@
           console.log(window.localStorage.ajs_user_id);
           
           if (window.localStorage.ajs_user_id.slice(1,-1).match('^[0-9]*$')) {
+            console.log('Match!!! deleting userid');
+            
             delete window.localStorage.ajs_user_id;
           }
           analytics.page();
