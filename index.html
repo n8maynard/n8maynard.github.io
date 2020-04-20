@@ -37,13 +37,13 @@
           analytics.SNIPPET_VERSION = "4.1.0";
           analytics.load("XQGuEhx7chyHYkIguVm89695BaukWQb2");
           let uid = window.localStorage.ajs_user_id;
-          uid.slice(1,-1);
-          console.log(window.localStorage.ajs_user_id.match('^[0-9]*$'));
-          
-          console.log(window.localStorage.ajs_user_id);
+          uid = uid.slice(1,-1);
+
+          console.log(uid.match('^[0-9]*$'));
           console.log(uid);
+          console.log(window.localStorage.ajs_user_id);
           
-          if (window.localStorage.ajs_user_id.match('^[0-9]*$')) {
+          if (window.localStorage.ajs_user_id.slice(1,-1).match('^[0-9]*$')) {
             delete window.localStorage.ajs_user_id;
           }
           analytics.page();
