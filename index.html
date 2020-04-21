@@ -37,11 +37,14 @@
           analytics.SNIPPET_VERSION = "4.1.0";
           analytics.load("XQGuEhx7chyHYkIguVm89695BaukWQb2");
           
-          if (window.localStorage.ajs_user_id.slice(1,-1).match('^[0-9]*$')) {
-            // analytics.reset();
+          if (window.localStorage.ajs_user_id && window.localStorage.ajs_user_id.slice(1,-1).match('^[0-9]*$')) {
             analytics._user.id(null);
-            console.log(analytics.user());
           }
+          // if (window.localStorage.ajs_user_id.slice(1,-1).match('^[0-9]*$')) {
+          //   // analytics.reset();
+          //   analytics._user.id(null);
+          //   console.log(analytics.user());
+          // }
           analytics.page();
         }
     }();
