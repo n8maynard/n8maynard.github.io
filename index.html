@@ -37,21 +37,24 @@
           analytics.SNIPPET_VERSION = "4.1.0";
           analytics.load("XQGuEhx7chyHYkIguVm89695BaukWQb2");
           analytics.page();
-          analytics.ready(function() {
-            console.log('Analytics ready!');
-            console.log('user ID: ', window.localStorage.ajs_user_id);
-            var user = analytics.user();
-            if (window.localStorage.ajs_user_id && window.localStorage.ajs_user_id.slice(1,-1).match('^[0-9]*$')) {
-              console.log('resetting ID: ', window.localStorage.ajs_user_id);
-              user.id(null);
-              console.log('new ID: ', window.localStorage.ajs_user_id);
-            }
-          })
         }
     }();
+    analytics.ready(function () {
+      console.log('Analytics ready!');
+      console.log('user ID: ', window.localStorage.ajs_user_id);
+      var user = analytics.user();
+      if (window.localStorage.ajs_user_id && window.localStorage.ajs_user_id.slice(1, -1).match('^[0-9]*$')) {
+        console.log('resetting ID: ', window.localStorage.ajs_user_id);
+        user.id(null);
+        console.log('new ID: ', window.localStorage.ajs_user_id);
+      }
+    })
   </script>
   <style>
-    html {height:100%;}
+    html {
+      height: 100%;
+    }
+
     .container {
       width: 100%;
       height: 100%;
@@ -61,14 +64,16 @@
       display: flex;
       background-color: black;
     }
-    .contact_form   {
+
+    .contact_form {
       flex: 1;
       color: white;
       background-color: #99cfad;
       padding: 20px;
       color: black;
     }
-    .button_bank    {
+
+    .button_bank {
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -76,6 +81,7 @@
       color: white;
       padding: 20px;
     }
+
     button {
       height: 40px;
       border-radius: 10px;
@@ -88,21 +94,21 @@
 
   <div class="container">
     <div class="contact_form">
-        <form name="travel" onsubmit="identify(event)">
-            <div>What is your favorite travel destination?</div>
-            <input name="destination" required="" size="81" type="text" />
-            <br><br>
-            <div>Any recommendations (cool things to do, places to visit or restaurants to eat)?</div>
-            <textarea cols="81" name="details" required="" rows="10"></textarea>
-            <br><br>
-            Name: <input name="first_name" required="" size="75" type="text" />
-            <br><br>
-            Name: <input name="last_name" required="" size="75" type="text" />
-            <br><br>
-            Email: <input name="email" required="" size="75" type="email" />
-            <br><br>
-            <input name="submit" type="submit" value="submit" />
-        </form>
+      <form name="travel" onsubmit="identify(event)">
+        <div>What is your favorite travel destination?</div>
+        <input name="destination" required="" size="81" type="text" />
+        <br><br>
+        <div>Any recommendations (cool things to do, places to visit or restaurants to eat)?</div>
+        <textarea cols="81" name="details" required="" rows="10"></textarea>
+        <br><br>
+        Name: <input name="first_name" required="" size="75" type="text" />
+        <br><br>
+        Name: <input name="last_name" required="" size="75" type="text" />
+        <br><br>
+        Email: <input name="email" required="" size="75" type="email" />
+        <br><br>
+        <input name="submit" type="submit" value="submit" />
+      </form>
     </div>
     <div class="button_bank">
       <button onclick="unplannedEvent(event)">
@@ -154,6 +160,7 @@
         name: 'fail'
       });
     }
+
     function omitUnplannedProps(e) {
       analytics.track('destination submitted', {
         destinationLocation: 'wrong schema',
@@ -162,6 +169,7 @@
         name: 'fail'
       });
     }
+
     function schemaViolation(e) {
       analytics.track('destination submitted', {
         destinationLocation: 1234,
