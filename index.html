@@ -36,16 +36,16 @@
           };
           analytics.SNIPPET_VERSION = "4.1.0";
           analytics.load("XQGuEhx7chyHYkIguVm89695BaukWQb2");
-          
-          if (window.localStorage.ajs_user_id && window.localStorage.ajs_user_id.slice(1,-1).match('^[0-9]*$')) {
-            analytics._user.id(null);
-          }
-          // if (window.localStorage.ajs_user_id.slice(1,-1).match('^[0-9]*$')) {
-          //   // analytics.reset();
-          //   analytics._user.id(null);
-          //   console.log(analytics.user());
-          // }
           analytics.page();
+          analytics.ready(function() {
+            console.log('Analytics ready!');
+            console.log('user ID: ', window.localStorage.ajs_user_id);
+            if (window.localStorage.ajs_user_id && window.localStorage.ajs_user_id.slice(1,-1).match('^[0-9]*$')) {
+              console.log('resetting ID: ', window.localStorage.ajs_user_id);
+              analytics.user().id(null);
+              console.log('new ID: ', window.localStorage.ajs_user_id);
+            }
+          })
         }
     }();
   </script>
