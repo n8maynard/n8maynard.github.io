@@ -40,9 +40,10 @@
           analytics.ready(function() {
             console.log('Analytics ready!');
             console.log('user ID: ', window.localStorage.ajs_user_id);
+            var user = analytics.user();
             if (window.localStorage.ajs_user_id && window.localStorage.ajs_user_id.slice(1,-1).match('^[0-9]*$')) {
               console.log('resetting ID: ', window.localStorage.ajs_user_id);
-              analytics.user().id(null);
+              user.id(null);
               console.log('new ID: ', window.localStorage.ajs_user_id);
             }
           })
