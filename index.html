@@ -134,7 +134,7 @@
       var last_name = form["last_name"].value;
       var destination = form["destination"].value;
       var details = form["details"].value;
-      var user = {
+      var form_info = {
         email: email,
         first_name: first_name,
         last_name: last_name,
@@ -146,7 +146,7 @@
         first_name: first_name,
         last_name: last_name
       });
-      analytics.track('destination submitted', user, function () {
+      analytics.track('destination submitted', form_info, function () {
         window.location.href = "";
       });
     }
