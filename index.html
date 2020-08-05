@@ -101,9 +101,9 @@
         <div>Any recommendations (cool things to do, places to visit or restaurants to eat)?</div>
         <textarea cols="81" name="details" required="" rows="10"></textarea>
         <br><br>
-        Name: <input name="first_name" required="" size="75" type="text" />
+        First Name: <input name="first_name" required="" size="75" type="text" />
         <br><br>
-        Name: <input name="last_name" required="" size="75" type="text" />
+        Last Name: <input name="last_name" required="" size="75" type="text" />
         <br><br>
         Email: <input name="email" required="" size="75" type="email" />
         <br><br>
@@ -146,14 +146,14 @@
         first_name: first_name,
         last_name: last_name
       });
-      analytics.track('destination submitted', form_info, function () {
+      analytics.track('Form Submitted', form_info, function () {
         window.location.href = "";
       });
     }
 
     // event forwarding
     function unplannedEvent(e) {
-      analytics.track('unplanned event', {
+      analytics.track('Unplanned Event', {
         destination: 'group call',
         details: 'fail    ',
         email: 'fail@segment.com',
@@ -162,7 +162,7 @@
     }
 
     function omitUnplannedProps(e) {
-      analytics.track('destination submitted', {
+      analytics.track('Form Submitted', {
         destinationLocation: 'wrong schema',
         details: 'fail    ',
         email: 'fail@segment.com',
@@ -171,7 +171,7 @@
     }
 
     function schemaViolation(e) {
-      analytics.track('destination submitted', {
+      analytics.track('Form Submitted', {
         destinationLocation: 1234,
         details: 'fail    ',
         email: 555,
